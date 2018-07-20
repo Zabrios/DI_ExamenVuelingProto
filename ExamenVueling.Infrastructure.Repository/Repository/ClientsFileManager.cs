@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft;
+using ExamenVueling.Common.Layer;
 using ExamenVueling.Infrastructure.Repository.Contracts;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
@@ -19,26 +23,110 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
         }
         public override void CreateFile()
         {
-            base.CreateFile();
+            if (!FileExists())
+            {
+                try
+                {
+                    using (StreamWriter file = new StreamWriter(FilePath, true)) { }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         public override bool FileExists()
         {
-            return base.FileExists();
+            return File.Exists(FilePath);
         }
 
         public override string RetrieveData()
         {
-            return base.RetrieveData();
+            try
+            {
+                var jsonData = File.ReadAllText(FilePath);
+                return jsonData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         public override void WriteToFile(string fileData)
         {
-            base.WriteToFile(fileData);
+            try
+            {
+                File.WriteAllText(FilePath, fileData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //catch (UnauthorizedAccessException ex)
+            //{
+
+            //    throw new VuelingException(FMResources.Unauthorized, ex);
+            //}
+            //catch (ArgumentNullException ex)
+            //{
+            //    throw new VuelingException(FMResources.ArgumentNull, ex);
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    throw new VuelingException(FMResources.Argument, ex);
+            //}
+            //catch (DirectoryNotFoundException ex)
+            //{
+            //    throw new VuelingException(FMResources.NotFound, ex);
+            //}
+            //catch (PathTooLongException ex)
+            //{
+            //    throw new VuelingException(FMResources.PathTooLong, ex);
+            //}
+            //catch (IOException ex)
+            //{
+            //    throw new VuelingException(FMResources.IO, ex);
+            //}
+            //catch (NotSupportedException ex)
+            //{
+            //    throw new VuelingException(FMResources.NotSupported, ex);
+            //}
         }
 
-        public override T ProcessData<T>(T data)
+        public override List<T> ProcessData<T>(List<T> data)
         {
-            return base.ProcessData(data);
+            List<T> auxiliarClients = null;
+            try
+            {
+                CreateFile();
+                var fileData = RetrieveData();
+                auxiliarClients = JsonConvert.DeserializeObject<List<T>>(fileData);
+                if (auxiliarClients != null)
+                {
+                    //if (!data.OrderBy(x => x).SequenceEqual(auxiliarClients.OrderBy(x => x)))
+                    //{
+                        var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
+                        WriteToFile(resultJSONList);
+                    //}
+                }
+                else
+                {
+                    var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
+                    WriteToFile(resultJSONList);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw new VuelingException(FileResources.ArgumentNull, ex);
+            }
+            return data;
+            //return null;
+            //return base.ProcessData(data);
         }
     }
 }

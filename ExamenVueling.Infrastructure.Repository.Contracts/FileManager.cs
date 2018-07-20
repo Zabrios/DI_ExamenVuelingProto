@@ -25,7 +25,7 @@ namespace ExamenVueling.Infrastructure.Repository.Contracts
         public virtual void WriteToFile(string fileData)
         {
         }
-        public virtual T ProcessData<T>(T data)
+        public virtual List<T> ProcessData<T>(List<T> data)
         {
             return data;
         }

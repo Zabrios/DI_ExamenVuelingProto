@@ -61,6 +61,15 @@ namespace ExamenVueling.Infrastructure.Repository {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Null argument..
+        /// </summary>
+        internal static string ArgumentNull {
+            get {
+                return ResourceManager.GetString("ArgumentNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a ClientsWebApi.json.
         /// </summary>
         internal static string ClientsFileName {
@@ -70,7 +79,7 @@ namespace ExamenVueling.Infrastructure.Repository {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a C:\Users\formacion\source\repos\ExamenVueling.
+        ///   Busca una cadena traducida similar a C:\Users\formacion\source\repos\ExamenVueling\.
         /// </summary>
         internal static string FilePath {
             get {

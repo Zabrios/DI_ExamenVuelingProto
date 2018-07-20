@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Infrastructure.Repository.Contracts
 {
-    public interface IClientRepository<T>
+    public interface IClientRepository<T> : IRepository<T>
     {
         //List<T> GetAll();
         T GetById(Guid id);

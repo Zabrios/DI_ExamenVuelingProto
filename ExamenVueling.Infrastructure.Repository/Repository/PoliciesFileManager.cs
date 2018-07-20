@@ -35,7 +35,7 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
             base.WriteToFile(fileData);
         }
 
-        public override T ProcessData<T>(T data)
+        public override List<T> ProcessData<T>(List<T> data)
         {
             return base.ProcessData(data);
         }

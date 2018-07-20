@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Infrastructure.Repository.Contracts
 {
-    public interface IPolicyRepository<T>
+    public interface IPolicyRepository<T> : IRepository<T>
     {
         List<T> GetPoliciesByUserName(string name);
     }

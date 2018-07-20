@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using ExamenVueling.Application.Services;
+using ExamenVueling.Application.DTO;
 
 namespace ExamenVueling.Facade.WebApi
 {
@@ -18,6 +20,8 @@ namespace ExamenVueling.Facade.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            List<ClientDTO> clients = new List<ClientDTO>();
+            clients = ClientHttpApiController.GetCall().Result;
         }
     }
 }

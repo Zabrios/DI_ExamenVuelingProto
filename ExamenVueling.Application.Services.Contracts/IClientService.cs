@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Application.Services.Contracts
 {
-    public interface IClientService<T>
+    public interface IClientService<T> : IAddService<T>
     {
         //List<T> GetAll();
         T GetById(Guid id);

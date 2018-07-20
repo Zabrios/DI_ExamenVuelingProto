@@ -20,8 +20,6 @@ namespace ExamenVueling.Facade.WebApi
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            List<ClientDTO> clients = new List<ClientDTO>();
-            clients = ClientHttpApiController.GetCall().Result;
         }
     }
 }

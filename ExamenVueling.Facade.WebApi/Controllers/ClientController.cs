@@ -26,9 +26,58 @@ namespace ExamenVueling.Facade.WebApi.Controllers
         }
 
         // GET: api/Client/5
-        public string Get(int id)
+        [HttpGet]
+        [Route("api/Client/GetById/{id}")]
+        public IHttpActionResult GetById(string id)
         {
-            return "value";
+            ClientDTO clientReturned = null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+
+                clientReturned = iService.GetById(Guid.Parse(id));
+                return Ok(clientReturned);
+                //return CreatedAtRoute("DefaultApi",
+                //    new { id = clientReturned.Id }, clientReturned);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            //return Request.CreateResponse(HttpStatusCode.OK, clientReturned);
+            //return null;
+        }
+
+        // GET: api/Client/5
+        [HttpGet]
+        [Route("api/Client/GetByName/{name}")]
+        public IHttpActionResult GetByName(string name)
+        {
+            ClientDTO clientReturned = null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                clientReturned = iService.GetByName(name);
+                return Ok(clientReturned);
+                //return CreatedAtRoute("DefaultApi",
+                //    new { id = clientReturned.Id }, clientReturned);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            //return Request.CreateResponse(HttpStatusCode.OK, clientReturned);
+            //return null;
         }
 
         // POST: api/Client
@@ -53,16 +102,6 @@ namespace ExamenVueling.Facade.WebApi.Controllers
 
             return CreatedAtRoute("DefaultApi",
                     new { id = data.First().Id }, data);
-        }
-
-        // PUT: api/Client/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Client/5
-        public void Delete(int id)
-        {
         }
     }
 }

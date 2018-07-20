@@ -17,7 +17,7 @@ namespace ExamenVueling.Application.Services
     {
         private readonly IClientRepository<ClientEntity> clientRepository;
         private static IMapper mapper;
-        public ClientService(): this(new ClientRepository()){ }
+        public ClientService() : this(new ClientRepository()) { }
 
         public ClientService(ClientRepository cRepository)
         {
@@ -38,18 +38,48 @@ namespace ExamenVueling.Application.Services
             {
                 throw ex;
             }
-            
+
             return model;
         }
 
         public ClientDTO GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var clientRepo = clientRepository.GetById(id);
+                return new ClientDTO
+                {
+                    Id = clientRepo.Id,
+                    Name = clientRepo.Name,
+                    Email = clientRepo.Email,
+                    Role = clientRepo.Role
+                };
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public ClientDTO GetByName(string name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var clientRepo = clientRepository.GetByName(name);
+                return new ClientDTO
+                {
+                    Id = clientRepo.Id,
+                    Name = clientRepo.Name,
+                    Email = clientRepo.Email,
+                    Role = clientRepo.Role
+                };
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public ClientDTO GetUserByPolicyNumber(Guid policyNumber)

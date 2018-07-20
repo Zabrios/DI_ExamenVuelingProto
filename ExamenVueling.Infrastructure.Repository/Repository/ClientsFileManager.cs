@@ -100,21 +100,22 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
             try
             {
                 CreateFile();
-                var fileData = RetrieveData();
-                auxiliarClients = JsonConvert.DeserializeObject<List<T>>(fileData);
-                if (auxiliarClients != null)
-                {
-                    //if (!data.OrderBy(x => x).SequenceEqual(auxiliarClients.OrderBy(x => x)))
-                    //{
-                        var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
-                        WriteToFile(resultJSONList);
-                    //}
-                }
-                else
-                {
-                    var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
-                    WriteToFile(resultJSONList);
-                }
+                var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
+                WriteToFile(resultJSONList);
+                //var fileData = RetrieveData();
+                //auxiliarClients = JsonConvert.DeserializeObject<List<T>>(fileData);
+                //if (auxiliarClients != null)
+                //{
+                //if (!data.OrderBy(x => x).SequenceEqual(auxiliarClients.OrderBy(x => x)))
+                //{
+
+                //}
+                //}
+                //else
+                //{
+                //var resultJSONList = JsonConvert.SerializeObject(data, Formatting.Indented);
+                //WriteToFile(resultJSONList);
+                //}
             }
             catch (InvalidOperationException)
             {

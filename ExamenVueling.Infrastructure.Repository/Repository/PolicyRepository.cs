@@ -5,14 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using ExamenVueling.Infrastructure.Repository.Contracts;
 using ExamenVueling.Domain.Entities;
+using ExamenVueling.Common.Layer;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
-    public class PolicyRepository : IRepository<PolicyEntity>, IPolicyRepository<PolicyEntity>
+    public class PolicyRepository : IPolicyRepository<PolicyEntity>
     {
+        public FileManager fManager;
+        public PolicyRepository()
+        {
+            this.fManager = new PoliciesFileManager();
+        }
         public List<PolicyEntity> Add(List<PolicyEntity> model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return fManager.ProcessData(model);
+            }
+            catch (Exception ex)
+            {
+                throw new VuelingException("placeholder", ex);
+            }
         }
 
         public List<PolicyEntity> GetPoliciesByUserName(string name)

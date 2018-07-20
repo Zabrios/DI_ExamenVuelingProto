@@ -21,82 +21,82 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
             FileName = FileResources.ClientsFileName;
             FilePath = FileResources.FilePath + FileName;
         }
-        public override void CreateFile()
-        {
-            if (!FileExists())
-            {
-                try
-                {
-                    using (StreamWriter file = new StreamWriter(FilePath, true)) { }
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
+        //public override void CreateFile()
+        //{
+        //    if (!FileExists())
+        //    {
+        //        try
+        //        {
+        //            using (StreamWriter file = new StreamWriter(FilePath, true)) { }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //}
 
-        public override bool FileExists()
-        {
-            return File.Exists(FilePath);
-        }
+        //public override bool FileExists()
+        //{
+        //    return File.Exists(FilePath);
+        //}
 
-        public override string RetrieveData()
-        {
-            try
-            {
-                var jsonData = File.ReadAllText(FilePath);
-                return jsonData;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public override void WriteToFile(string fileData)
-        {
-            try
-            {
-                File.WriteAllText(FilePath, fileData);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            //catch (UnauthorizedAccessException ex)
-            //{
+        //public override string RetrieveData()
+        //{
+        //    try
+        //    {
+        //        var jsonData = File.ReadAllText(FilePath);
+        //        return jsonData;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+        //public override void WriteToFile(string fileData)
+        //{
+        //    try
+        //    {
+        //        File.WriteAllText(FilePath, fileData);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    //catch (UnauthorizedAccessException ex)
+        //    //{
 
-            //    throw new VuelingException(FMResources.Unauthorized, ex);
-            //}
-            //catch (ArgumentNullException ex)
-            //{
-            //    throw new VuelingException(FMResources.ArgumentNull, ex);
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    throw new VuelingException(FMResources.Argument, ex);
-            //}
-            //catch (DirectoryNotFoundException ex)
-            //{
-            //    throw new VuelingException(FMResources.NotFound, ex);
-            //}
-            //catch (PathTooLongException ex)
-            //{
-            //    throw new VuelingException(FMResources.PathTooLong, ex);
-            //}
-            //catch (IOException ex)
-            //{
-            //    throw new VuelingException(FMResources.IO, ex);
-            //}
-            //catch (NotSupportedException ex)
-            //{
-            //    throw new VuelingException(FMResources.NotSupported, ex);
-            //}
-        }
+        //    //    throw new VuelingException(FMResources.Unauthorized, ex);
+        //    //}
+        //    //catch (ArgumentNullException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.ArgumentNull, ex);
+        //    //}
+        //    //catch (ArgumentException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.Argument, ex);
+        //    //}
+        //    //catch (DirectoryNotFoundException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.NotFound, ex);
+        //    //}
+        //    //catch (PathTooLongException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.PathTooLong, ex);
+        //    //}
+        //    //catch (IOException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.IO, ex);
+        //    //}
+        //    //catch (NotSupportedException ex)
+        //    //{
+        //    //    throw new VuelingException(FMResources.NotSupported, ex);
+        //    //}
+        //}
 
         public override List<T> ProcessData<T>(List<T> data)
         {
-            List<T> auxiliarClients = null;
+            //List<T> auxiliarClients = null;
             try
             {
                 CreateFile();

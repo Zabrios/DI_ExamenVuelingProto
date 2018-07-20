@@ -20,10 +20,10 @@ namespace ExamenVueling.Facade.WebApi.Controllers
             this.iService = clientService;
         }
         // GET: api/Client
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
 
         // GET: api/Client/5
         [HttpGet]
@@ -67,6 +67,32 @@ namespace ExamenVueling.Facade.WebApi.Controllers
             try
             {
                 clientReturned = iService.GetByName(name);
+                return Ok(clientReturned);
+                //return CreatedAtRoute("DefaultApi",
+                //    new { id = clientReturned.Id }, clientReturned);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            //return Request.CreateResponse(HttpStatusCode.OK, clientReturned);
+            //return null;
+        }
+
+        // GET: api/Client/5
+        [HttpGet]
+        [Route("api/Client/GetByPolicy/{policyNumber}")]
+        public IHttpActionResult GetByPolicy(Guid policyNumber)
+        {
+            ClientDTO clientReturned = null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                clientReturned = iService.GetUserByPolicyNumber(policyNumber);
                 return Ok(clientReturned);
                 //return CreatedAtRoute("DefaultApi",
                 //    new { id = clientReturned.Id }, clientReturned);

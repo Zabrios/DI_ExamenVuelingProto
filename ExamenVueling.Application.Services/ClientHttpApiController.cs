@@ -31,7 +31,7 @@ namespace ExamenVueling.Application.Services
                 {
                     var clientJsonString = await response.Content.ReadAsStringAsync();
                     clientsListJson = JsonConvert.DeserializeObject<ClientListDTO>(clientJsonString);
-                    clientsFullList = clientsListJson.clients;
+                    clientsFullList = clientsListJson.Clients;
                 }
             }
             catch (Exception ex)

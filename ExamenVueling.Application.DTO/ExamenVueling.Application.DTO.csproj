@@ -43,6 +43,7 @@
     <Compile Include="ClientDTO.cs" />
     <Compile Include="ClientListDTO.cs" />
     <Compile Include="PolicyDTO.cs" />
+    <Compile Include="PolicyListDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -77,14 +77,28 @@ namespace ExamenVueling.Application.Services
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
         public ClientDTO GetUserByPolicyNumber(Guid policyNumber)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var clientRepo = clientRepository.GetUserByPolicyNumber(policyNumber);
+                return new ClientDTO
+                {
+                    Id = clientRepo.Id,
+                    Name = clientRepo.Name,
+                    Email = clientRepo.Email,
+                    Role = clientRepo.Role
+                };
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

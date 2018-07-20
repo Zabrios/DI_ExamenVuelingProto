@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Application.DTO
 {
-    public class ClientListDTO
+    public class PolicyListDTO
     {
-        public IEnumerable<ClientDTO> Clients { get; set; }
+        public IEnumerable<PolicyDTO> Policies { get; set; }
+
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="ClientHttpApiController.cs" />
     <Compile Include="ClientService.cs" />
     <Compile Include="PolicyHttpApiController.cs" />
+    <Compile Include="PolicyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,9 +11,9 @@ using Newtonsoft.Json;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
-    public class ClientRepository : IRepository<ClientEntity>, IClientRepository<ClientEntity>
+    public class ClientRepository : IClientRepository<ClientEntity>
     {
-        private FileManager fManager;
+        public FileManager fManager;
         public ClientRepository()
         {
             this.fManager = new ClientsFileManager();
@@ -34,15 +34,10 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
         {
             try
             {
-                //var guidTest = Guid.Parse(id.ToString());
-                //string email = "thelmablankenship@quotezart.com";
                 var jsonData = fManager.RetrieveData();
                 var clientList = JsonConvert.DeserializeObject<List<ClientEntity>>(jsonData);
                 var clientSelected = clientList.Select(list => list).First(cl => cl.Id == id);
-
-                //var clientSelected = clientList.Select(list => list).First(cl => cl.Id == id);
                 return clientSelected;
-                //throw new NotImplementedException();
             }
             catch (Exception ex)
             {
@@ -67,7 +62,19 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
 
         public ClientEntity GetUserByPolicyNumber(Guid policyNumber)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var policyManager = new PolicyRepository();
+                var jsonDataPolicies = policyManager.fManager.RetrieveData();
+                var policyList = JsonConvert.DeserializeObject<List<PolicyEntity>>(jsonDataPolicies);
+                var policySelected = policyList.Select(list => list).First(pl => pl.Id == policyNumber);
+                var clientFromPolicy = GetById(policySelected.ClientId);
+                return clientFromPolicy;
+            }
+            catch (Exception ex)
+            {
+                throw new VuelingException("placeholder", ex);
+            }
         }
     }
 }

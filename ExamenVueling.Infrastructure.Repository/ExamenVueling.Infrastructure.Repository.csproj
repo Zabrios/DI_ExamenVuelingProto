@@ -49,8 +49,10 @@
       <DependentUpon>FileResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ClientRepository.cs" />
     <Compile Include="Repository\ClientsFileManager.cs" />
     <Compile Include="Repository\PoliciesFileManager.cs" />
+    <Compile Include="Repository\PolicyRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataModel\" />

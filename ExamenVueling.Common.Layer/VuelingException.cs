@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExamenVueling.Common.Layer
 {
-    class VuelingException
+    public class VuelingException
     {
     }
 }

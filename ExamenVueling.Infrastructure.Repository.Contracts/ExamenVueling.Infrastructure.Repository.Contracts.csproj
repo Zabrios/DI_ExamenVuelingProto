@@ -46,5 +46,11 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExamenVueling.Domain.Entities\ExamenVueling.Domain.Entities.csproj">
+      <Project>{34232155-DFEB-452F-86B7-E020F2052AB1}</Project>
+      <Name>ExamenVueling.Domain.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

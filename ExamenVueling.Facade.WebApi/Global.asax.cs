@@ -15,6 +15,8 @@ namespace ExamenVueling.Facade.WebApi
     {
         protected void Application_Start()
         {
+            App_Start.AutofacConfigure.Configure();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

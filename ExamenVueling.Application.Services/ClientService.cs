@@ -13,13 +13,13 @@ using ExamenVueling.Infrastructure.Repository.Repository;
 
 namespace ExamenVueling.Application.Services
 {
-    public class ClientService : IClientService<ClientDTO>
+    public class ClientService : IClientService
     {
-        private readonly IClientRepository<ClientEntity> clientRepository;
+        private readonly IClientRepository clientRepository;
         private static IMapper mapper;
-        public ClientService() : this(new ClientRepository()) { }
+        //public ClientService() /*: this(new ClientRepository())*/ { }
 
-        public ClientService(ClientRepository cRepository)
+        public ClientService(IClientRepository cRepository)
         {
             this.clientRepository = cRepository;
             var config = new MapperConfiguration(

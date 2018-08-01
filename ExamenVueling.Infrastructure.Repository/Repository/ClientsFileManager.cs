@@ -8,6 +8,7 @@ using ExamenVueling.Common.Layer;
 using ExamenVueling.Infrastructure.Repository.Contracts;
 using Newtonsoft.Json;
 using System.IO;
+using ExamenVueling.Common.Layer.Log4net;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
@@ -16,8 +17,10 @@ namespace ExamenVueling.Infrastructure.Repository.Repository
     /// </summary>
     public class ClientsFileManager : FileManager
     {
-        public ClientsFileManager()
+        private readonly ICustomLogger Log;
+        public ClientsFileManager(ICustomLogger logger)
         {
+            this.Log = logger;
             FileName = FileResources.ClientsFileName;
             FilePath = FileResources.FilePath + FileName;
         }

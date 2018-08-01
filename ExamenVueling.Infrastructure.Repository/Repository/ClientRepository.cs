@@ -11,12 +11,16 @@ using Newtonsoft.Json;
 
 namespace ExamenVueling.Infrastructure.Repository.Repository
 {
-    public class ClientRepository : IClientRepository<ClientEntity>
+    public class ClientRepository : IClientRepository
     {
         public FileManager fManager;
-        public ClientRepository()
+        //public ClientRepository()
+        //{
+        //    //this.fManager = new ClientsFileManager();
+        //}
+        public ClientRepository(FileManager fileManager)
         {
-            this.fManager = new ClientsFileManager();
+            this.fManager = fileManager;
         }
         public List<ClientEntity> Add(List<ClientEntity> model)
         {

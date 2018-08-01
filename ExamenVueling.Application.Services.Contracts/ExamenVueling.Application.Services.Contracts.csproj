@@ -45,5 +45,11 @@
     <Compile Include="IPolicyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExamenVueling.Application.DTO\ExamenVueling.Application.DTO.csproj">
+      <Project>{4C8557AA-F66F-4A1E-A720-38B5C8803F31}</Project>
+      <Name>ExamenVueling.Application.DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

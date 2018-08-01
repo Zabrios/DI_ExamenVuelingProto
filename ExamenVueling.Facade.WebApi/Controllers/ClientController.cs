@@ -13,9 +13,9 @@ namespace ExamenVueling.Facade.WebApi.Controllers
 {
     public class ClientController : ApiController
     {
-        public readonly IClientService<ClientDTO> iService;
-        public ClientController() : this(new ClientService()) { }
-        public ClientController(ClientService clientService)
+        public readonly IClientService iService;
+        //public ClientController() /*: this(new ClientService())*/ { }
+        public ClientController(IClientService clientService)
         {
             this.iService = clientService;
         }
